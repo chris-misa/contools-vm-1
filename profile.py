@@ -37,7 +37,7 @@ for cores in CORES:
     newNode = request.XenVM(newNodeName)
     newNode.cores = cores
     newNode.ram = ram
-    newIface = newNode.addInterface("if1")
+    newIface = newNode.addInterface("if" + str(ipCount))
     newIface.component_id = "eth1"
     newIface.addAddress(rspec.IPv4Address("10.10.1."+str(ipCount),"255.255.255.0"))
     ipCount += 1
