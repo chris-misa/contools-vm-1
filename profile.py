@@ -48,7 +48,7 @@ for cores in CORES:
 
 # Link everything together
 link = request.LAN("lan")
-link.addInterface(target1iface)
+# link.addInterface(target1iface)
 for iface in ifaces:
   link.addInterface(iface)
 
