@@ -20,13 +20,11 @@ import geni.portal as portal
 import geni.rspec.pg as rspec
 request = portal.context.makeRequestRSpec()
 
-#   # Set up a physical target
-#   target1 = request.RawPC("target1")
-#   target1.hardware_type = "m510"
-#   # Manually add interface to ensure it has a constant IP address
-#   target1iface = target1.addInterface("if1")
-#   target1iface.component_id = "eth1"
-#   target1iface.addAddress(rspec.IPv4Address("10.10.1.1","255.255.255.0"))
+# Set up a physical target
+target1 = request.XenVM("target1")
+target1iface = target1.addInterface("if1")
+target1iface.component_id = "eth1"
+target1iface.addAddress(rspec.IPv4Address("10.10.1.1","255.255.255.0"))
 
 
 # Set up VMs with various properties
@@ -48,7 +46,7 @@ for cores in CORES:
 
 # Link everything together
 link = request.LAN("lan")
-# link.addInterface(target1iface)
+link.addInterface(target1iface)
 for iface in ifaces:
   link.addInterface(iface)
 
